@@ -4,13 +4,16 @@ import authRoutes from './routes/auth.routes.js'
 import connectToMongoDb from './db/connectToMongoDb.js';
 
 const app=express();
-dotenv.config();
-
 const PORT=process.env.PORT ;
-app.get('/',(req,res)=>{
-    res.send("Hello world!")
-});
+
+dotenv.config();
+app.use(express.json());
 app.use("/api/auth",authRoutes)
+
+
+// app.get('/',(req,res)=>{
+//     res.send("Hello world!")
+// });
 
 app.listen(PORT,()=>{
     connectToMongoDb()
